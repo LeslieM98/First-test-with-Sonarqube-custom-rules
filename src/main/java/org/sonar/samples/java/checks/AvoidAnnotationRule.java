@@ -33,48 +33,38 @@ import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
 @Rule(
-  key = "Return parameter should not equal single param type.",
-  name = "Return type and parameter of a method should not be the same",
-  description = "For a method having a single parameter, the types of its return value and its parameter should never be the same.",
-  tags = {"bug"})
+        key = "Return parameter should not equal single param type.",
+        name = "Return type and parameter of a method should not be the same",
+        description = "For a method having a single parameter, the types of its return value and its parameter should never be the same.",
+        tags = {"bug"})
 public class AvoidAnnotationRule extends BaseTreeVisitor implements JavaFileScanner {
 
-  private static final String DEFAULT_VALUE = "Inject";
+    private static final String DEFAULT_VALUE = "Inject";
 
-  private JavaFileScannerContext context;
+    private JavaFileScannerContext context;
 
-  /**
-   * Name of the annotation to avoid. Value can be set by users in Quality profiles.
-   * The key
-   */
-  @RuleProperty(
-    defaultValue = DEFAULT_VALUE,
-    description = "Return parameter should not equal single param type.")
-  protected String name;
+    /**
+     * Name of the annotation to avoid. Value can be set by users in Quality profiles.
+     * The key
+     */
+    @RuleProperty(
+            defaultValue = DEFAULT_VALUE,
+            description = "Return parameter should not equal single param type.")
+    protected String name;
 
-  @Override
-  public void scanFile(JavaFileScannerContext context) {
-    this.context = context;
+    @Override
+    public void scanFile(JavaFileScannerContext context) {
+        this.context = context;
 
-    scan(context.getTree());
+        scan(context.getTree());
 
-    System.out.println(PrinterVisitor.print(context.getTree()));
-  }
-  
-  
-  @Override
-  public void visitMethod(MethodTree tree) {
-    if(tree.parameters().size() == 1)
-    {
-      Type returnType = tree.returnType().symbolType();
-      Type methodparam = tree.parameters().get(0).type().symbolType();
-      if(returnType.equals(methodparam))
-      {
-        context.reportIssue(this, tree, "Return type is same type as parameter.");
-      }
+        System.out.println(PrinterVisitor.print(context.getTree()));
     }
-    // The call to the super implementation allows to continue the visit of the AST.
-    // Be careful to always call this method to visit every node of the tree.
-    super.visitMethod(tree);
-  }
+
+
+    @Override
+    public void visitMethod(MethodTree tree) {
+        tree.symbol().name();
+        super.visitMethod(tree);
+    }
 }

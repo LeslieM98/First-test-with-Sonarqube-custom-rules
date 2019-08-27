@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: org.sonar.samples.java.checks.MyFirstCustomCheckTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.549 s <<< FAILURE! - in org.sonar.samples.java.checks.MyFirstCustomCheckTest
+test(org.sonar.samples.java.checks.MyFirstCustomCheckTest)  Time elapsed: 0.522 s  <<< ERROR!
+java.lang.IllegalStateException: At least one issue expected
+	at org.sonar.samples.java.checks.MyFirstCustomCheckTest.test(MyFirstCustomCheckTest.java:10)
+

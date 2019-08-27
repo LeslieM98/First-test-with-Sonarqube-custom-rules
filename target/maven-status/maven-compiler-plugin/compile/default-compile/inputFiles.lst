@@ -1,0 +1,8 @@
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/Data.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/checks/MyFirstCustomCheckCheck.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/RulesList.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/MyJavaFileCheckRegistrar.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/checks/AvoidAnnotationRule.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/MyJavaRulesPlugin.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/checks/PrinterVisitor.java
+/home/leslie/Coding/Java/java-custom-rules/src/main/java/org/sonar/samples/java/MyJavaRulesDefinition.java

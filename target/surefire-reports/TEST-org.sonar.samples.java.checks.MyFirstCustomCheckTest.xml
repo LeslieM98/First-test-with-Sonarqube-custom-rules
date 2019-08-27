@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.sonar.samples.java.checks.MyFirstCustomCheckTest" time="0.549" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.specification.version" value="12"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/leslie/Coding/Java/java-custom-rules/target/test-classes:/home/leslie/Coding/Java/java-custom-rules/target/classes:/home/leslie/.m2/repository/org/sonarsource/sonarqube/sonar-plugin-api/7.7/sonar-plugin-api-7.7.jar:/home/leslie/.m2/repository/org/sonarsource/java/sonar-java-plugin/5.12.1.17771/sonar-java-plugin-5.12.1.17771.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-surefire/5.12.1.17771/java-surefire-5.12.1.17771.jar:/home/leslie/.m2/repository/com/fasterxml/staxmate/staxmate/2.3.1/staxmate-2.3.1.jar:/home/leslie/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-xml-parsing/1.10.2.456/sonar-xml-parsing-1.10.2.456.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-analyzer-test-commons/1.10.2.456/sonar-analyzer-test-commons-1.10.2.456.jar:/home/leslie/.m2/repository/xerces/xercesImpl/2.12.0/xercesImpl-2.12.0.jar:/home/leslie/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:/home/leslie/.m2/repository/com/fasterxml/woodstox/woodstox-core/5.2.0/woodstox-core-5.2.0.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-jacoco/5.12.1.17771/java-jacoco-5.12.1.17771.jar:/home/leslie/.m2/repository/org/jacoco/org.jacoco.core/0.8.3/org.jacoco.core-0.8.3.jar:/home/leslie/.m2/repository/org/ow2/asm/asm/7.0/asm-7.0.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-frontend/5.12.1.17771/java-frontend-5.12.1.17771.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-commons/7.1/asm-commons-7.1.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-tree/7.1/asm-tree-7.1.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-analysis/7.1/asm-analysis-7.1.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-util/7.1/asm-util-7.1.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-checks/5.12.1.17771/java-checks-5.12.1.17771.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-analyzer-recognizers/1.10.2.456/sonar-analyzer-recognizers-1.10.2.456.jar:/home/leslie/.m2/repository/org/sonarsource/java/external-reports/5.12.1.17771/external-reports-5.12.1.17771.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-analyzer-commons/1.10.2.456/sonar-analyzer-commons-1.10.2.456.jar:/home/leslie/.m2/repository/org/sonarsource/sslr-squid-bridge/sslr-squid-bridge/2.6.1/sslr-squid-bridge-2.6.1.jar:/home/leslie/.m2/repository/org/picocontainer/picocontainer/2.14.1/picocontainer-2.14.1.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-checks-testkit/5.12.1.17771/java-checks-testkit-5.12.1.17771.jar:/home/leslie/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/home/leslie/.m2/repository/com/google/code/gson/gson/2.6.2/gson-2.6.2.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-testing-harness/1.23/sslr-testing-harness-1.23.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-core/1.23/sslr-core-1.23.jar:/home/leslie/.m2/repository/cglib/cglib-nodep/3.2.5/cglib-nodep-3.2.5.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-toolkit/1.23/sslr-toolkit-1.23.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-xpath/1.23/sslr-xpath-1.23.jar:/home/leslie/.m2/repository/jaxen/jaxen/1.1.4/jaxen-1.1.4.jar:/home/leslie/.m2/repository/org/codehaus/sonar/sonar-colorizer/3.7/sonar-colorizer-3.7.jar:/home/leslie/.m2/repository/org/codehaus/sonar/sonar-channel/3.7/sonar-channel-3.7.jar:/home/leslie/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar:/home/leslie/.m2/repository/org/easytesting/fest-assert/1.4/fest-assert-1.4.jar:/home/leslie/.m2/repository/org/easytesting/fest-util/1.1.6/fest-util-1.1.6.jar:/home/leslie/.m2/repository/org/hamcrest/hamcrest-all/1.1/hamcrest-all-1.1.jar:/home/leslie/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/home/leslie/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar:/home/leslie/.m2/repository/org/slf4j/slf4j-api/1.6.2/slf4j-api-1.6.2.jar:/home/leslie/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/leslie/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/leslie/.m2/repository/org/assertj/assertj-core/3.6.1/assertj-core-3.6.1.jar:/home/leslie/.m2/repository/ch/qos/logback/logback-classic/0.9.30/logback-classic-0.9.30.jar:/home/leslie/.m2/repository/ch/qos/logback/logback-core/0.9.30/logback-core-0.9.30.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://openjdk.java.net/"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="12"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-12-openjdk/lib"/>
+    <property name="sun.java.command" value="/home/leslie/Coding/Java/java-custom-rules/target/surefire/surefirebooter136027680037233068.jar /home/leslie/Coding/Java/java-custom-rules/target/surefire 2019-08-27T21-27-18_756-jvmRun1 surefire9131042513287171423tmp surefire_018220345252200417175tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/leslie/Coding/Java/java-custom-rules/target/test-classes:/home/leslie/Coding/Java/java-custom-rules/target/classes:/home/leslie/.m2/repository/org/sonarsource/sonarqube/sonar-plugin-api/7.7/sonar-plugin-api-7.7.jar:/home/leslie/.m2/repository/org/sonarsource/java/sonar-java-plugin/5.12.1.17771/sonar-java-plugin-5.12.1.17771.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-surefire/5.12.1.17771/java-surefire-5.12.1.17771.jar:/home/leslie/.m2/repository/com/fasterxml/staxmate/staxmate/2.3.1/staxmate-2.3.1.jar:/home/leslie/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-xml-parsing/1.10.2.456/sonar-xml-parsing-1.10.2.456.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-analyzer-test-commons/1.10.2.456/sonar-analyzer-test-commons-1.10.2.456.jar:/home/leslie/.m2/repository/xerces/xercesImpl/2.12.0/xercesImpl-2.12.0.jar:/home/leslie/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:/home/leslie/.m2/repository/com/fasterxml/woodstox/woodstox-core/5.2.0/woodstox-core-5.2.0.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-jacoco/5.12.1.17771/java-jacoco-5.12.1.17771.jar:/home/leslie/.m2/repository/org/jacoco/org.jacoco.core/0.8.3/org.jacoco.core-0.8.3.jar:/home/leslie/.m2/repository/org/ow2/asm/asm/7.0/asm-7.0.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-frontend/5.12.1.17771/java-frontend-5.12.1.17771.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-commons/7.1/asm-commons-7.1.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-tree/7.1/asm-tree-7.1.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-analysis/7.1/asm-analysis-7.1.jar:/home/leslie/.m2/repository/org/ow2/asm/asm-util/7.1/asm-util-7.1.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-checks/5.12.1.17771/java-checks-5.12.1.17771.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-analyzer-recognizers/1.10.2.456/sonar-analyzer-recognizers-1.10.2.456.jar:/home/leslie/.m2/repository/org/sonarsource/java/external-reports/5.12.1.17771/external-reports-5.12.1.17771.jar:/home/leslie/.m2/repository/org/sonarsource/analyzer-commons/sonar-analyzer-commons/1.10.2.456/sonar-analyzer-commons-1.10.2.456.jar:/home/leslie/.m2/repository/org/sonarsource/sslr-squid-bridge/sslr-squid-bridge/2.6.1/sslr-squid-bridge-2.6.1.jar:/home/leslie/.m2/repository/org/picocontainer/picocontainer/2.14.1/picocontainer-2.14.1.jar:/home/leslie/.m2/repository/org/sonarsource/java/java-checks-testkit/5.12.1.17771/java-checks-testkit-5.12.1.17771.jar:/home/leslie/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/home/leslie/.m2/repository/com/google/code/gson/gson/2.6.2/gson-2.6.2.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-testing-harness/1.23/sslr-testing-harness-1.23.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-core/1.23/sslr-core-1.23.jar:/home/leslie/.m2/repository/cglib/cglib-nodep/3.2.5/cglib-nodep-3.2.5.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-toolkit/1.23/sslr-toolkit-1.23.jar:/home/leslie/.m2/repository/org/sonarsource/sslr/sslr-xpath/1.23/sslr-xpath-1.23.jar:/home/leslie/.m2/repository/jaxen/jaxen/1.1.4/jaxen-1.1.4.jar:/home/leslie/.m2/repository/org/codehaus/sonar/sonar-colorizer/3.7/sonar-colorizer-3.7.jar:/home/leslie/.m2/repository/org/codehaus/sonar/sonar-channel/3.7/sonar-channel-3.7.jar:/home/leslie/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar:/home/leslie/.m2/repository/org/easytesting/fest-assert/1.4/fest-assert-1.4.jar:/home/leslie/.m2/repository/org/easytesting/fest-util/1.1.6/fest-util-1.1.6.jar:/home/leslie/.m2/repository/org/hamcrest/hamcrest-all/1.1/hamcrest-all-1.1.jar:/home/leslie/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/home/leslie/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar:/home/leslie/.m2/repository/org/slf4j/slf4j-api/1.6.2/slf4j-api-1.6.2.jar:/home/leslie/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/leslie/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/leslie/.m2/repository/org/assertj/assertj-core/3.6.1/assertj-core-3.6.1.jar:/home/leslie/.m2/repository/ch/qos/logback/logback-classic/0.9.30/logback-classic-0.9.30.jar:/home/leslie/.m2/repository/ch/qos/logback/logback-core/0.9.30/logback-core-0.9.30.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/leslie"/>
+    <property name="user.language" value="de"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2019-07-16"/>
+    <property name="java.home" value="/usr/lib/jvm/java-12-openjdk"/>
+    <property name="idea.version2019.2.1" value="true"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/leslie/Coding/Java/java-custom-rules"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/home/leslie/Coding/Java/java-custom-rules/target/surefire/surefirebooter136027680037233068.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="12.0.2+10"/>
+    <property name="user.name" value="leslie"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.2.8-1-MANJARO"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/leslie/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="12.0.2"/>
+    <property name="user.dir" value="/home/leslie/Coding/Java/java-custom-rules"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="N/A"/>
+    <property name="java.vm.version" value="12.0.2+10"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="56.0"/>
+  </properties>
+  <testcase name="test" classname="org.sonar.samples.java.checks.MyFirstCustomCheckTest" time="0.522">
+    <error message="At least one issue expected" type="java.lang.IllegalStateException">java.lang.IllegalStateException: At least one issue expected
+	at org.sonar.samples.java.checks.MyFirstCustomCheckTest.test(MyFirstCustomCheckTest.java:10)
+</error>
+    <system-out><![CDATA[21:27:19.364 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - ----- Classpath analyzed by Squid:
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - /home/leslie/Coding/Java/java-custom-rules/target/test-jars/spring-webmvc-4.3.3.RELEASE.jar
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - /home/leslie/Coding/Java/java-custom-rules/target/test-jars/commons-collections4-4.0.jar
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - /home/leslie/Coding/Java/java-custom-rules/target/test-jars/spring-web-4.3.3.RELEASE.jar
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - /home/leslie/Coding/Java/java-custom-rules/target/test-jars/javaee-api-6.0.jar
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - /home/leslie/Coding/Java/java-custom-rules/target/test-jars/spring-context-4.3.3.RELEASE.jar
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - /home/leslie/Coding/Java/java-custom-rules/target/test-classes
+21:27:19.366 [main] DEBUG o.s.java.bytecode.ClassLoaderBuilder - -----
+21:27:19.603 [main] INFO  o.s.analyzer.commons.ProgressReport - 1 source files to be analyzed
+21:27:19.733 [Report about progress of Java AST analyzer] INFO  o.s.analyzer.commons.ProgressReport - 1/1 source files have been analyzed
+]]></system-out>
+  </testcase>
+</testsuite>

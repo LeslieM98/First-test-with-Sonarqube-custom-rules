@@ -42,109 +42,109 @@ import org.sonar.squidbridge.annotations.RuleTemplate;
  */
 public class MyJavaRulesDefinition implements RulesDefinition {
 
-  // don't change that because the path is hard coded in CheckVerifier
-  private static final String RESOURCE_BASE_PATH = "/org/sonar/l10n/java/rules/squid";
+    // don't change that because the path is hard coded in CheckVerifier
+    private static final String RESOURCE_BASE_PATH = "/org/sonar/l10n/java/rules/squid";
 
-  public static final String REPOSITORY_KEY = "mycompany-java";
+    public static final String REPOSITORY_KEY = "mycompany-java";
 
-  private final Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
-  @Override
-  public void define(Context context) {
-    NewRepository repository = context
-      .createRepository(REPOSITORY_KEY, "java")
-      .setName("MyCompany Custom Repository");
+    @Override
+    public void define(Context context) {
+        NewRepository repository = context
+                .createRepository(REPOSITORY_KEY, "java")
+                .setName("MyCompany Custom Repository");
 
-    for (Class<? extends JavaCheck> check : RulesList.getChecks()) {
-      new RulesDefinitionAnnotationLoader().load(repository, check);
-      newRule(check, repository);
+        for (Class<? extends JavaCheck> check : RulesList.getChecks()) {
+            new RulesDefinitionAnnotationLoader().load(repository, check);
+            newRule(check, repository);
+        }
+        repository.done();
     }
-    repository.done();
-  }
 
-  protected void newRule(Class<? extends JavaCheck> ruleClass, NewRepository repository) {
+    protected void newRule(Class<? extends JavaCheck> ruleClass, NewRepository repository) {
 
-    org.sonar.check.Rule ruleAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.check.Rule.class);
-    if (ruleAnnotation == null) {
-      throw new IllegalArgumentException("No Rule annotation was found on " + ruleClass);
+        org.sonar.check.Rule ruleAnnotation = AnnotationUtils.getAnnotation(ruleClass, org.sonar.check.Rule.class);
+        if (ruleAnnotation == null) {
+            throw new IllegalArgumentException("No Rule annotation was found on " + ruleClass);
+        }
+        String ruleKey = ruleAnnotation.key();
+        if (StringUtils.isEmpty(ruleKey)) {
+            throw new IllegalArgumentException("No key is defined in Rule annotation of " + ruleClass);
+        }
+        NewRule rule = repository.rule(ruleKey);
+        if (rule == null) {
+            throw new IllegalStateException("No rule was created for " + ruleClass + " in " + repository.key());
+        }
+        ruleMetadata(rule);
+
+        rule.setTemplate(AnnotationUtils.getAnnotation(ruleClass, RuleTemplate.class) != null);
     }
-    String ruleKey = ruleAnnotation.key();
-    if (StringUtils.isEmpty(ruleKey)) {
-      throw new IllegalArgumentException("No key is defined in Rule annotation of " + ruleClass);
+
+    private void ruleMetadata(NewRule rule) {
+        String metadataKey = rule.key();
+        addHtmlDescription(rule, metadataKey);
+        addMetadata(rule, metadataKey);
     }
-    NewRule rule = repository.rule(ruleKey);
-    if (rule == null) {
-      throw new IllegalStateException("No rule was created for " + ruleClass + " in " + repository.key());
+
+    private void addMetadata(NewRule rule, String metadataKey) {
+        URL resource = MyJavaRulesDefinition.class.getResource(RESOURCE_BASE_PATH + "/" + metadataKey + "_java.json");
+        if (resource != null) {
+            RuleMetatada metatada = gson.fromJson(readResource(resource), RuleMetatada.class);
+            rule.setSeverity(metatada.defaultSeverity.toUpperCase(Locale.US));
+            rule.setName(metatada.title);
+            rule.addTags(metatada.tags);
+            rule.setType(RuleType.valueOf(metatada.type));
+            rule.setStatus(RuleStatus.valueOf(metatada.status.toUpperCase(Locale.US)));
+            if (metatada.remediation != null) {
+                rule.setDebtRemediationFunction(metatada.remediation.remediationFunction(rule.debtRemediationFunctions()));
+                rule.setGapDescription(metatada.remediation.linearDesc);
+            }
+        }
     }
-    ruleMetadata(rule);
 
-    rule.setTemplate(AnnotationUtils.getAnnotation(ruleClass, RuleTemplate.class) != null);
-  }
-
-  private void ruleMetadata(NewRule rule) {
-    String metadataKey = rule.key();
-    addHtmlDescription(rule, metadataKey);
-    addMetadata(rule, metadataKey);
-  }
-
-  private void addMetadata(NewRule rule, String metadataKey) {
-    URL resource = MyJavaRulesDefinition.class.getResource(RESOURCE_BASE_PATH + "/" + metadataKey + "_java.json");
-    if (resource != null) {
-      RuleMetatada metatada = gson.fromJson(readResource(resource), RuleMetatada.class);
-      rule.setSeverity(metatada.defaultSeverity.toUpperCase(Locale.US));
-      rule.setName(metatada.title);
-      rule.addTags(metatada.tags);
-      rule.setType(RuleType.valueOf(metatada.type));
-      rule.setStatus(RuleStatus.valueOf(metatada.status.toUpperCase(Locale.US)));
-      if (metatada.remediation != null) {
-        rule.setDebtRemediationFunction(metatada.remediation.remediationFunction(rule.debtRemediationFunctions()));
-        rule.setGapDescription(metatada.remediation.linearDesc);
-      }
+    private static void addHtmlDescription(NewRule rule, String metadataKey) {
+        URL resource = MyJavaRulesDefinition.class.getResource(RESOURCE_BASE_PATH + "/" + metadataKey + "_java.html");
+        if (resource != null) {
+            rule.setHtmlDescription(readResource(resource));
+        }
     }
-  }
 
-  private static void addHtmlDescription(NewRule rule, String metadataKey) {
-    URL resource = MyJavaRulesDefinition.class.getResource(RESOURCE_BASE_PATH + "/" + metadataKey + "_java.html");
-    if (resource != null) {
-      rule.setHtmlDescription(readResource(resource));
+    private static String readResource(URL resource) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.openStream()))) {
+            return reader.lines().collect(Collectors.joining("\n"));
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to read: " + resource, e);
+        }
     }
-  }
 
-  private static String readResource(URL resource) {
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.openStream()))) {
-      return reader.lines().collect(Collectors.joining("\n"));
-    } catch (Exception e) {
-      throw new IllegalStateException("Failed to read: " + resource, e);
+    private static class RuleMetatada {
+        String title;
+        String status;
+        @Nullable
+        Remediation remediation;
+
+        String type;
+        String[] tags;
+        String defaultSeverity;
     }
-  }
 
-  private static class RuleMetatada {
-    String title;
-    String status;
-    @Nullable
-    Remediation remediation;
+    private static class Remediation {
+        String func;
+        String constantCost;
+        String linearDesc;
+        String linearOffset;
+        String linearFactor;
 
-    String type;
-    String[] tags;
-    String defaultSeverity;
-  }
-
-  private static class Remediation {
-    String func;
-    String constantCost;
-    String linearDesc;
-    String linearOffset;
-    String linearFactor;
-
-    public DebtRemediationFunction remediationFunction(DebtRemediationFunctions drf) {
-      if (func.startsWith("Constant")) {
-        return drf.constantPerIssue(constantCost.replace("mn", "min"));
-      }
-      if ("Linear".equals(func)) {
-        return drf.linear(linearFactor.replace("mn", "min"));
-      }
-      return drf.linearWithOffset(linearFactor.replace("mn", "min"), linearOffset.replace("mn", "min"));
+        public DebtRemediationFunction remediationFunction(DebtRemediationFunctions drf) {
+            if (func.startsWith("Constant")) {
+                return drf.constantPerIssue(constantCost.replace("mn", "min"));
+            }
+            if ("Linear".equals(func)) {
+                return drf.linear(linearFactor.replace("mn", "min"));
+            }
+            return drf.linearWithOffset(linearFactor.replace("mn", "min"), linearOffset.replace("mn", "min"));
+        }
     }
-  }
 
 }
